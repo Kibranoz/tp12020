@@ -7,9 +7,10 @@
 
 #ifndef SRC_FONCTIONS_H_
 #define SRC_FONCTIONS_H_
-#include <iostream>
-bool validerTelephone(const std::string& p_telephone);
+#include <cstring>
 
+bool validerTelephone(const std::string& p_telephone);
+bool isNumber(char seq[], int debut, int fin);
 
 
 

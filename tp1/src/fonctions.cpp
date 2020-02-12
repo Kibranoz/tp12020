@@ -57,4 +57,10 @@ bool validerTelephone(const std::string& p_telephone){
 	}
 
 }
+bool validerRAMQ(const std::string& p_numero, const std::string& p_nom, const std::string& p_prenom, int p_jourNaissance, int p_moisNaissance, int p_anneeNaissance, char p_sex){
+	char listNom[p_nom.size()];
+	char listPrenom[p_prenom.size()];
+	char listNumero[p_numero.size()];
+
+}
 

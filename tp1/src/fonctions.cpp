@@ -9,6 +9,10 @@
 
 using namespace std;
 
+char intToCharNumber(int num){
+    return (char) num + 48;
+}
+
 bool isLetter(char ima[], int debut, int fin){
   //debut : position du premier caractère à vérifier
   //fin position du dernier caractère à vérifier, inclusivement

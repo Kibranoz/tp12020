@@ -4,8 +4,13 @@
  *  Created on: 2020-02-10
  *      Author: etudiant
  */
+#include "validationFormat.h"
+
 #include <iostream>
-#include "fonctions.h"
+#include <cctype>
+
+#include <sstream>
+
 
 using namespace std;
 
@@ -13,14 +18,15 @@ char intToCharNumber(int num){
     return (char) num + 48;
 }
 
-bool isLetter(char ima[], int debut, int fin){
+
+bool isLetter(char seq[], int debut, int fin){
   //debut : position du premier caractère à vérifier
   //fin position du dernier caractère à vérifier, inclusivement
   //a et i des constantes d'itérations
   string letter = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
   for (int a = debut; a<=fin; a++){
       for (int i=0; i<=25; i++){
-  if (ima[a] == letter[i]){
+  if (seq[a] == letter[i]){
     break;
   }
   if (i == 25 ){
@@ -61,10 +67,50 @@ bool validerTelephone(const std::string& p_telephone){
 	}
 
 }
-bool validerRAMQ(const std::string& p_numero, const std::string& p_nom, const std::string& p_prenom, int p_jourNaissance, int p_moisNaissance, int p_anneeNaissance, char p_sex){
+bool validerNumRAMQ(const std::string& p_numero, const std::string& p_nom, const std::string& p_prenom, int p_jourNaissance, int p_moisNaissance, int p_anneeNaissance, char p_sex){
+	//utiliser un ostringstream pour tout si j'ai le temps
 	char listNom[p_nom.size()];
 	char listPrenom[p_prenom.size()];
 	char listNumero[p_numero.size()];
+	strcpy(listNom, p_nom.c_str());
+	strcpy(listPrenom, p_prenom.c_str());
+	strcpy(listNumero, p_numero.c_str());
+	if (isLetter(listNumero,0,3) && listNumero[4] == ' '  && isNumber(listNumero,5,8) && listNumero[9] == ' ' && isNumber(listNumero,10,13)){
+	for (int i = 0; i<=2; i++){
+		if (listNumero[i] != toupper(listNom[i])){
+			return false;
+		}
+	}
+	if (listNumero[3] != toupper(listPrenom[0])){
+		return false;
+	}
+	if (p_sex == 'F'){
+		p_moisNaissance += 50;
+	}
+	string anneeString = to_string(p_anneeNaissance);
+	string moisString = to_string(p_moisNaissance);
 
+	if (p_moisNaissance < 10){
+		moisString = "0" + to_string(p_moisNaissance);
+	}
+		string jourString = to_string(p_jourNaissance);
+	if (p_jourNaissance < 10) {
+		jourString = "0" + to_string(p_jourNaissance);
+	}
+
+	ostringstream numdate;
+	numdate << anneeString.substr(2,2) << moisString << " " << jourString;
+	char numDateChar[numdate.str().size()];
+	strcpy(numDateChar, numdate.str().c_str());
+	for (int j = 5; j <= 11; j++){
+		if (listNumero[j] != numDateChar[j-5]){
+			return false;
+		}
+	}
+	}
+	else {
+		return false;
+	}
+	return true;
 }
 

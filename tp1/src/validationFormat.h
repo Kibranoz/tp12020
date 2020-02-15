@@ -7,7 +7,9 @@
 
 #ifndef SRC_VALIDATIONFORMAT_H_
 #define SRC_VALIDATIONFORMAT_H_
+#include <string>
 #include <cstring>
+
 char intToCharNumber(int num);
 bool validerTelephone(const std::string& p_telephone);
 bool isNumber(char seq[], int debut, int fin);

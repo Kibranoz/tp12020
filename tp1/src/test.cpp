@@ -5,12 +5,12 @@
  *      Author: etudiant
  */
 #include <iostream>
-
+#include <sstream>
 #include "validationFormat.h"
 using namespace std;
 
 int main(){
-	if (validerNumRAMQ("COUL 9809 0519", "Couture", "Louis", 5,9,1998,'H')){
+	if (util::validerNumRAMQ("COUL 9809 0519", "Couture", "Louis", 5,9,1998,'H')){
 	cout << "Valide" << endl;
 	}
 	else {
@@ -19,7 +19,7 @@ int main(){
 	cout << "Veuillez entrer un numéro de telephone" << endl;
 	string p_telephone;
 	getline(cin, p_telephone);
-	if (validerTelephone(p_telephone)){
+	if (util::validerTelephone(p_telephone)){
 		cout << "Numéro valide" << endl;
 	}
 	else {
@@ -47,7 +47,7 @@ int main(){
 	char p_sex = 'H';
 	//cin >> p_sex;
 	//cin.ignore();
-	if (validerNumRAMQ(p_Numero, p_nom, p_prenom, p_JourNaissance, p_moisNaissance, p_anneeNaissance, p_sex)){
+	if (util::validerNumRAMQ(p_Numero, p_nom, p_prenom, p_JourNaissance, p_moisNaissance, p_anneeNaissance, p_sex)){
 		cout << "Votre carte est valide" << endl;
 	}
 	else {

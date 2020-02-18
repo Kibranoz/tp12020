@@ -9,10 +9,11 @@
 #include <iostream>
 #include <cctype>
 
-#include <sstream>
 
 
 using namespace std;
+
+namespace util {
 
 char intToCharNumber(int num){
     return (char) num + 48;
@@ -113,4 +114,17 @@ bool validerNumRAMQ(const std::string& p_numero, const std::string& p_nom, const
 	}
 	return true;
 }
-
+bool validerFormatNom(const std::string & p_nom){
+	char pNomChar[p_nom.size()];
+	strcpy(pNomChar,p_nom.c_str());
+	for (int i = 0; i <= p_nom.size(); i++){
+		pNomChar[i] = toupper(pNomChar[i]);
+	}
+	if (isLetter(pNomChar,0,p_nom.size())){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+};
